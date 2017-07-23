@@ -123,8 +123,8 @@ IF %Md5Status%==NA GOTO Windows_Install_Md5
 
 for /f "tokens=1" %%i in ( 'curl -k -s https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.md5') do set md5_remote_choco_upgrade=%%i
 for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0%~n0%~x0') do set md5_local_choco_upgrade=%%i
-echo    Md5 check remote: [%md5_remote_choco_upgrade%]
 echo     Md5 check local: [%md5_local_choco_upgrade%]
+echo    Md5 check remote: [%md5_remote_choco_upgrade%]
 ECHO  ------------------------------------------------------------------------------
 ECHO.
 IF %md5_remote_choco_upgrade% NEQ %md5_local_choco_upgrade% goto update_this_cmd_file
@@ -141,12 +141,13 @@ rem echo %run%
 rem echo.
 %run%
 for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0temp_%~n0%~x0') do set md5_templocal_choco_upgrade=%%i
-echo    Md5 check remote: [%md5_remote_choco_upgrade%]
+echo %md5_templocal_choco_upgrade% > %~dp0temp_%~n0%~x0.md5
 echo      Md5 check temp: [%md5_templocal_choco_upgrade%]
-timeout 10
+echo    Md5 check remote: [%md5_remote_choco_upgrade%]
+timeout 5
 IF %md5_remote_choco_upgrade% NEQ %md5_templocal_choco_upgrade% goto firstWindows
-echo copy
-copy %~dp0temp_%~n0%~x0 %~dp0%~n0%~x0 && timeout 10 && start %~dp0%~n0%~x0
+echo copy temp to local
+copy %~dp0temp_%~n0%~x0 %~dp0%~n0%~x0 && timeout 10 && start %~dp0%~n0%~x0 && exit
 echo never run here!!!!
 timeout 1000
 goto firstWindows
