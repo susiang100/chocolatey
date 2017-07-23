@@ -147,7 +147,7 @@ echo    Md5 check remote: [%md5_remote_choco_upgrade%]
 timeout 5
 IF %md5_remote_choco_upgrade% NEQ %md5_templocal_choco_upgrade% goto firstWindows
 echo copy temp to local
-copy %~dp0temp_%~n0%~x0 %~dp0%~n0%~x0 && timeout 10 && start %~dp0%~n0%~x0 && exit
+copy %~dp0temp_%~n0%~x0 %~dp0%~n0%~x0 && timeout 10 && start %~dp0%~n0%~x0 && del /q /f "%~dp0temp_%~n0%~x0" && exit
 echo never run here!!!!
 timeout 1000
 goto firstWindows
