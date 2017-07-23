@@ -121,7 +121,7 @@ IF %ChocolateyStatus%==NA GOTO Windows_Install_Chocolatey
 IF %CurlStatus%==NA GOTO Windows_Install_Curl
 IF %Md5Status%==NA GOTO Windows_Install_Md5
 
-for /f "tokens=1" %%i in ( 'curl -k -s https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.md5') do set md5_remote_choco_upgrade=%%i
+for /f "tokens=1" %%i in ( 'curl -k -s https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.md5?t=%dateMyFomat%') do set md5_remote_choco_upgrade=%%i
 for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0%~n0%~x0') do set md5_local_choco_upgrade=%%i
 echo     Md5 check local: [%md5_local_choco_upgrade%]
 echo    Md5 check remote: [%md5_remote_choco_upgrade%]
