@@ -241,5 +241,9 @@ choco upgrade windjview -y
 echo ##############################################
 choco upgrade vlc -y
 echo ##############################################
+choco upgrade curl -y
+echo ##############################################
+choco upgrade md5 -y
+echo ##############################################
 timeout 300
 exit
