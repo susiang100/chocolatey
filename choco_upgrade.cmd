@@ -141,7 +141,7 @@ rem echo %run%
 rem echo.
 %run%
 for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0temp_%~n0%~x0') do set md5_templocal_choco_upgrade=%%i
-echo %md5_templocal_choco_upgrade% > %~dp0temp_%~n0%~x0.md5
+REM echo %md5_templocal_choco_upgrade% > %~dp0temp_%~n0%~x0.md5
 echo      Md5 check temp: [%md5_templocal_choco_upgrade%]
 echo    Md5 check remote: [%md5_remote_choco_upgrade%]
 timeout 5
