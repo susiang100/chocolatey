@@ -247,5 +247,6 @@ choco upgrade curl -y
 echo ##############################################
 choco upgrade md5 -y
 echo ##############################################
+choco upgrade visualstudio2017community -y
 timeout 300
 exit
