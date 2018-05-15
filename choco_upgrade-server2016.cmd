@@ -153,7 +153,7 @@ timeout 1000
 goto firstWindows
 
 md5 -l -n %~dp0temp_%~n0%~x0
-curl -Ok https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.cmd
+curl -Ok https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade-server2016.cmd
 
 
 
