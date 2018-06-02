@@ -15,14 +15,15 @@ set dateMyFomat=%Year%%Month%%Day%-%Hour%%Minute%
 ECHO ######################
 ECHO ### Check Md5 Only ###
 ECHO ######################
-curl -o %~dp0temp_check_md5_only_%~n0%~x0 -k https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.cmd?t=%dateMyFomat%
+rem curl -o %~dp0temp_check_md5_only_%~n0%~x0 -k https://raw.githubusercontent.com/susiang100/chocolatey/master/choco_upgrade.cmd?t=%dateMyFomat%
+rem for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0temp_check_md5_only_%~n0%~x0') do set md5_templocal_choco_upgrade=%%i
 
-for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0temp_check_md5_only_%~n0%~x0') do set md5_templocal_choco_upgrade=%%i
-echo %md5_templocal_choco_upgrade% > %~dp0temp_check_md5_only_%~n0%~x0.md5
+for /f "tokens=1" %%i in ( 'md5 -l -n %~dp0choco_upgrade.cmd') do set string_md5=%%i
+echo %string_md5% > %~dp0choco_upgrade.md5
 
-echo      Md5 check temp: [%md5_templocal_choco_upgrade%]
+echo      Md5 check temp: [%string_md5%]
 
-del /q /f "%~dp0temp_check_md5_only_%~n0%~x0"
+rem del /q /f "%~dp0temp_check_md5_only_%~n0%~x0"
 pause
 goto firstWindows
 
